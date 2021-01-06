@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - 12
+
+services:
+  - docker
+
+# pre-testing installs
+install:
+  - echo "nothing nees to be installed"
+
+before_script:
+  - echo "no tests given"
+
+
+script:
+  - docker --version
+  - docker build -t sammysium/frontend .
+  - docker tag sammysium/frontend sammysium/frontend:latest
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" -- password-stdin
+  - docker push sammysium/frontend
