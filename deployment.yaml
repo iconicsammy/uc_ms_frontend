@@ -18,3 +18,20 @@ spec:
           imagePullPolicy: Always
           ports:
           - containerPort: 80
+          env:
+            - name: AWS_REGION
+              value: us-east-2
+            - name: AWS_PROFILE
+              valueFrom:
+                secretKeyRef:
+                  name: mysecret
+                  key: AWS_PROFILE
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: mysecret
+                  key: AWS_BUCKET
+            - name: URL
+              value: localhost
+            - name: JWT_SECRET
+              value: secret

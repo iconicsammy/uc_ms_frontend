@@ -19,5 +19,5 @@ script:
   - docker tag sammysium/frontend sammysium/frontend:latest
 
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" -- password-stdin
+  - docker login -u "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
   - docker push sammysium/frontend
