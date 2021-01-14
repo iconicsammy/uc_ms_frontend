@@ -12,5 +12,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/www /usr/share/nginx/html/
 RUN chown root /usr/share/nginx/html/*
 RUN chmod 755 /usr/share/nginx/html/*
+EXPOSE 80
 # Start
 CMD ["nginx", "-g", "daemon off;"]
